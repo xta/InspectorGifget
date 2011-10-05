@@ -4,18 +4,37 @@
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 	</head>
 	<body>
+		<header>
+			<h1><a href="/">Gif-Explode.com</a></h1>
+			<h2>Extract images from animated gif image files!</h2>
+		</header>
 		<section>
 			<form action="/process" method="post">
-				<input name="image_url" placeholder="Image URL">
+				Paste the URL to the image here: <br />  
+				<input type="url" name="image_url" placeholder="Image URL">
 				<input type="submit" value="Fetch">
 			</form>
 		</section>
 		{% if frames %}
 			<section>
+				{% if image_url %}
+					<hr />
+					Original image:<br />
+					<img src="{{ image_url }}" /> <br />
+				{% endif %}
+				<hr />
 				{% for frame in frames %}
 					<img src="data:image/gif;base64,{{ frame }}" />
 				{% endfor %}
 			</section>
+		{% else %}
+			<form action="/process" method="post">
+				<input type="hidden" name="image_url" value="http://i.imgur.com/Ztkdp.gif">
+				<input type="submit" value="Click here for a demo!">
+			</form>
 		{% endif %}
+		<footer>
+			Written in <a href="#">Flask</a>.  Hosted on <a href="#">Heroku</a>.  View the source on <a href="#">Github</a>.
+		</footer>
 	</body>
 </html>

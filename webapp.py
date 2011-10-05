@@ -3,7 +3,7 @@ from base64 import b64encode
 from PIL import Image, ImageFile, ImageFileIO
 import StringIO
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 
 DEBUG=True
 
@@ -19,9 +19,10 @@ def process():
     
     # Fetch Image Data from Remote Server
     image_url = request.form['image_url']
-    response = urllib2.urlopen(image_url)
-    
-    #TODO: check for error fetching image
+    try:
+        response = urllib2.urlopen(image_url)
+    except ValueError:
+        abort(500)
 
     #Create image file in memory so PIL can use it
     memory_image = StringIO.StringIO(response.read())
@@ -44,7 +45,8 @@ def process():
         # called at end of every gif frame sequence:
         memory_image.close()
         
-    return render_template('index.html', frames=frames)
+    return render_template('index.html', frames=frames,
+                            image_url=image_url)
     
 
 if __name__ == "__main__":
