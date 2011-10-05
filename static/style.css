@@ -1,3 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Sunshiney);
+
+body {
+    font-family: 'Sunshiney', cursive;
+}
+
+a {
+    color: inherit;
+}
+
 input[type='url'] {
     width: 300px;
 }
