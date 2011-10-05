@@ -5,7 +5,7 @@ import StringIO
 
 from flask import Flask, render_template, request, abort
 
-DEBUG=True
+DEBUG=False
 
 app = Flask(__name__)
 
