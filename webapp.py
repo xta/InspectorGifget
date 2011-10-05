@@ -9,12 +9,13 @@ DEBUG=False
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.form:
+        return process()
+    else:
+        return render_template('index.html')
     
-    
-@app.route("/process", methods=['POST'])
 def process():
     
     # Fetch Image Data from Remote Server
