@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	</head>
+	<body>
+		<section>
+			<form action="/process" method="post">
+				<input name="image_url" placeholder="Image URL">
+				<input type="submit" value="Fetch">
+			</form>
+		</section>
+		{% if frames %}
+			<section>
+				{% for frame in frames %}
+					<img src="data:image/gif;base64,{{ frame }}" />
+				{% endfor %}
+			</section>
+		{% endif %}
+	</body>
+</html>
