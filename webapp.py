@@ -1,7 +1,7 @@
 from gifexplode import GifExplode
 from flask import Flask, render_template, request, abort, jsonify
 
-DEBUG=True
+DEBUG=False
 
 app = Flask(__name__)
 
@@ -20,7 +20,11 @@ def index():
                                           
     else:
         return render_template('index.html')
-                                          
+
+
+@app.route("/api")
+def api():
+    return render_template('api.html')
     
 @app.route("/api/explode", methods=['GET'])
 def api_explode():

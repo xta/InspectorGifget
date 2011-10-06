@@ -1,81 +1,40 @@
-<!doctype html>
-<html>
-	<head>
-		<title>Extract Frames from an Animated GIF Image - Gif Explode</title>
-		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-	</head>
-	<body>
-		<div id="wrapper">
-			<header>
-				<h1><a href="/">Gif-Explode.com</a></h1>
-			</header>
-			
-			<h2>Extract single frame images from animated gif image files!</h2>
-			
-			<section>
-				<form id="main_form" action="/" method="post">
-					Paste the URL to the image here: <br />  
-					<input  type="url" 
-							name="image_url" 
-							placeholder="Image URL" 
-							autofocus="autofocus" 
-							{% if image_url %}
-								value="{{image_url}}"
-							{% endif %}/>
-					<input type="submit" value="Fetch" />
-				</form>
-			</section>
-			
-			{% if frames %}
-				<section>
+{% extends "layout.html" %}
+{% block body %}
+	<h2>Extract single frame images from animated gif image files!</h2>
+	
+	<section>
+		<form id="main_form" action="/" method="post">
+			Paste the URL of the image here: <br />  
+			<input  type="url" 
+					name="image_url" 
+					placeholder="Image URL" 
+					autofocus="autofocus" 
 					{% if image_url %}
-						Original image:<br />
-						<img src="{{ image_url }}" /> <br />
-					{% endif %}
-					<br />
-					Image frames:<br />
-					{% for frame in frames %}
-						<img src="data:image/gif;base64,{{ frame }}" />
-					{% endfor %}
-				</section>
-				
-			{% else %}
-				<div id="demo">
-					Confused? <a id="demo_form_link" href="#">View the demo!</a>
-					<form id="demo_form" action="/" method="post">
-						<input type="hidden" name="image_url" value="http://i.imgur.com/Ztkdp.gif">
-					</form>
-				</div>
+						value="{{image_url}}"
+					{% endif %}/>
+			<input type="submit" value="Fetch" />
+		</form>
+	</section>
+	
+	{% if frames %}
+		<section>
+			{% if image_url %}
+				Original image:<br />
+				<img src="{{ image_url }}" /> <br />
 			{% endif %}
-			
-			<footer>
-				Written in <a href="http://flask.pocoo.org/">Flask</a>.  
-				Hosted on <a href="http://heroku.com">Heroku</a>.  
-				View the source on <a href="https://github.com/trg/GIF-Explode">Github</a>.
-				Developer? Check out the <a href="/api/explode?image_url=http://i.imgur.com/Ztkdp.gif">API</a>.
-			</footer>
-			
+			<br />
+			Image frames:<br />
+			{% for frame in frames %}
+				<img src="data:image/gif;base64,{{ frame }}" />
+			{% endfor %}
+		</section>
+		
+	{% else %}
+		<div id="demo">
+			Confused? <a id="demo_form_link" href="#">View the demo!</a>
+			<form id="demo_form" action="/" method="post">
+				<input type="hidden" name="image_url" value="http://i.imgur.com/Ztkdp.gif">
+			</form>
 		</div>
-		
-		<script type="text/javascript">
-
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-26142178-1']);
-		  _gaq.push(['_trackPageview']);
-
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-
-		</script>
-		
-		<script>
-			document.getElementById('demo_form_link').onclick = function() {
-				document.forms['demo_form'].submit();
-			}
-		</script>
-		
-	</body>
-</html>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+
+	<h2>API</h2>
+
+	<h3>GET /api/explode</h3>
+	<p>
+		Takes in as an argument "image_url" an image url.  Returns a JSON formatted list of base64 encoded image frames.
+	</p>
+	
+	<p>
+		<a href="/api/explode?image_url=http://i.imgur.com/Ztkdp.gif">Example</a>
+	</p>
+
+{% endblock %}
