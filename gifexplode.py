@@ -1,7 +1,7 @@
 import urllib2
 import StringIO
 from base64 import b64encode
-from PIL import Image, ImageFile, ImageFileIO
+from PIL import Image
 
 class GifExplode:
     def __init__(self, image_url):
