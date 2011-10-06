@@ -9,12 +9,14 @@ DEBUG=False
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.form:
         return process()
     else:
         return render_template('index.html')
+
     
 def process():
     
@@ -25,7 +27,7 @@ def process():
     except ValueError:
         abort(500)
 
-    #Create image file in memory so PIL can use it
+    # Create image file in memory so PIL can use it
     memory_image = StringIO.StringIO(response.read())
         
     # Save frames of GIF as base64 encoded data
@@ -33,14 +35,17 @@ def process():
     im = Image.open(memory_image)
     
     try:
-        while 1:
+        while True:
             
+            # Save frame to file-like object
             memory_frame = StringIO.StringIO()
             im.save(memory_frame, format='GIF')
             
+            # Encode & Add to list
             base64_encoded_frame = b64encode(memory_frame.getvalue())
             frames.append(base64_encoded_frame)
             
+            # Go to next frame
             im.seek(im.tell()+1)
             
     except EOFError:
