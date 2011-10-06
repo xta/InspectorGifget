@@ -34,13 +34,14 @@ def process():
     
     try:
         while 1:
-            im.seek(im.tell()+1)
             
             memory_frame = StringIO.StringIO()
             im.save(memory_frame, format='GIF')
             
             base64_encoded_frame = b64encode(memory_frame.getvalue())
             frames.append(base64_encoded_frame)
+            
+            im.seek(im.tell()+1)
             
     except EOFError:
         # called at end of every gif frame sequence:
