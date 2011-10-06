@@ -1,48 +1,64 @@
 <!doctype html>
 <html>
 	<head>
-		<title>GIF Explode</title>
+		<title>Extract Frames from an Animated GIF Image - Gif Explode</title>
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+		<script src="{{ url_for('static', filename='modernizr.min.js') }}"></script>
 	</head>
 	<body>
-		<header>
-			<h1><a href="/">Gif-Explode.com</a></h1>
-			<h2>Extract images from animated gif image files!</h2>
-			<h4>If it's anything but an animated gif, nothing will happen.
-				Better error messages coming soon.</h4>
-		</header>
-		<section>
-			<form action="/" method="post">
-				Paste the URL to the image here: <br />  
-				<input type="url" name="image_url" placeholder="Image URL">
-				<input type="submit" value="Fetch">
-			</form>
-		</section>
-		{% if frames %}
+		<div id="wrapper">
+			<header>
+				<h1><a href="/">Gif-Explode.com</a></h1>
+			</header>
+			
+			<h2>Extract single frame images from animated gif image files!</h2>
+			<p>If it's anything but an animated gif, nothing will happen.
+					Better error messages coming soon.</p>
+			
 			<section>
-				{% if image_url %}
-					<hr />
-					Original image:<br />
-					<img src="{{ image_url }}" /> <br />
-				{% endif %}
-				<hr />
-				{% for frame in frames %}
-					<img src="data:image/gif;base64,{{ frame }}" />
-				{% endfor %}
+				<form id="main_form" action="/" method="post">
+					Paste the URL to the image here: <br />  
+					<input  type="url" 
+							name="image_url" 
+							placeholder="Image URL" 
+							autofocus="autofocus" 
+							{% if image_url %}
+								value="{{image_url}}"
+							{% endif %}/>
+					<input type="submit" value="Fetch" />
+				</form>
 			</section>
-		{% else %}
-			<form action="/" method="post">
-				<input type="hidden" name="image_url" value="http://i.imgur.com/Ztkdp.gif">
-				<input type="submit" value="Click here for a demo!">
-			</form>
-		{% endif %}
-		<footer>
-			<hr />
-			This app is beta / work-in-progress. Requires a modern browser.<br />
-			Written in <a href="http://flask.pocoo.org/">Flask</a>.  
-			Hosted on <a href="http://heroku.com">Heroku</a>.  
-			View the source on <a href="https://github.com/trg/GIF-Explode">Github</a>.
-		</footer>
+			
+			{% if frames %}
+				<section>
+					{% if image_url %}
+						Original image:<br />
+						<img src="{{ image_url }}" /> <br />
+					{% endif %}
+					<br />
+					Image frames:<br />
+					{% for frame in frames %}
+						<img src="data:image/gif;base64,{{ frame }}" />
+					{% endfor %}
+				</section>
+				
+			{% else %}
+				<div id="demo">
+					Confused? <a id="demo_form_link" href="#">View the demo!</a>
+					<form id="demo_form" action="/" method="post">
+						<input type="hidden" name="image_url" value="http://i.imgur.com/Ztkdp.gif">
+					</form>
+				</div>
+			{% endif %}
+			
+			<footer>
+				This app is beta / work-in-progress.<br />
+				Written in <a href="http://flask.pocoo.org/">Flask</a>.  
+				Hosted on <a href="http://heroku.com">Heroku</a>.  
+				View the source on <a href="https://github.com/trg/GIF-Explode">Github</a>.
+			</footer>
+			
+		</div>
 		
 		<script type="text/javascript">
 
@@ -56,6 +72,12 @@
 		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
 
+		</script>
+		
+		<script>
+			document.getElementById('demo_form_link').onclick = function() {
+				document.forms['demo_form'].submit();
+			}
 		</script>
 		
 	</body>

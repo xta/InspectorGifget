@@ -1,13 +1,64 @@
-@import url(http://fonts.googleapis.com/css?family=Sunshiney);
+@import url(http://fonts.googleapis.com/css?family=Changa+One);
+@import url(http://fonts.googleapis.com/css?family=Spinnaker);
 
 body {
-    font-family: 'Sunshiney', cursive;
+    background: #272F30;
+    color: #F7EDB7;
+    font-family: 'Spinnaker', sans-serif;
+    margin: 0;
+}
+
+#wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    background: #222;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 66px;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    font-family: 'Changa One', sans-serif;
+}
+
+h1 a {
+    color: #9E2B20;
+    text-decoration: none;
+    text-shadow: 2px 3px #F7EDB7;
 }
 
 a {
     color: inherit;
 }
 
+#main_form {
+    padding: 20px 0;
+    width: 400px;
+    margin: 0 auto;
+}
+
+#demo {
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
 input[type='url'] {
     width: 300px;
+}
+
+footer {
+    background: #9E2B20;
+    padding: 10px;
+    margin-top: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
