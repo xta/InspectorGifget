@@ -1,11 +1,7 @@
-import urllib2
-from base64 import b64encode
-from PIL import Image, ImageFile, ImageFileIO
-import StringIO
-
+from gifexplode import GifExplode
 from flask import Flask, render_template, request, abort
 
-DEBUG=False
+DEBUG=True
 
 app = Flask(__name__)
 
@@ -20,37 +16,12 @@ def index():
     
 def process():
     
-    # Fetch Image Data from Remote Server
     image_url = request.form['image_url']
     try:
-        response = urllib2.urlopen(image_url)
+        exploder = GifExplode(image_url)
+        frames = exploder.explode()
     except ValueError:
         abort(500)
-
-    # Create image file in memory so PIL can use it
-    memory_image = StringIO.StringIO(response.read())
-        
-    # Save frames of GIF as base64 encoded data
-    frames = []
-    im = Image.open(memory_image)
-    
-    try:
-        while True:
-            
-            # Save frame to file-like object
-            memory_frame = StringIO.StringIO()
-            im.save(memory_frame, format='GIF')
-            
-            # Encode & Add to list
-            base64_encoded_frame = b64encode(memory_frame.getvalue())
-            frames.append(base64_encoded_frame)
-            
-            # Go to next frame
-            im.seek(im.tell()+1)
-            
-    except EOFError:
-        # called at end of every gif frame sequence:
-        memory_image.close()
         
     return render_template('index.html', frames=frames,
                             image_url=image_url)
