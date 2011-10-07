@@ -1,7 +1,7 @@
 from gifexplode import GifExplode
 from flask import Flask, render_template, request, abort, jsonify
 
-DEBUG=True
+DEBUG=False
 
 app = Flask(__name__)
 
