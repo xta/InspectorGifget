@@ -17,6 +17,14 @@
 	</section>
 	
 	{% if frames %}
+	
+		{% if image_url %}
+			<aside id="link_to_page">
+				Link to this page:<br />
+				<input type="text" value="http://gif-explode.com/{{ image_url }}" />
+			</aside>
+		{% endif %}
+	
 		<section>
 			{% if image_url %}
 				Original image:<br />
@@ -31,10 +39,7 @@
 		
 	{% else %}
 		<div id="demo">
-			Confused? <a id="demo_form_link" href="#">View the demo!</a>
-			<form id="demo_form" action="/" method="post">
-				<input type="hidden" name="image_url" value="http://i.imgur.com/aXNfp.gif">
-			</form>
+			Confused? <a href="/http://i.imgur.com/aXNfp.gif">View the demo!</a>
 		</div>
 	{% endif %}
 {% endblock %}

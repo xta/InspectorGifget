@@ -1,17 +1,20 @@
 from gifexplode import GifExplode
 from flask import Flask, render_template, request, abort, jsonify
 
-DEBUG=False
+DEBUG=True
 
 app = Flask(__name__)
 
 
 @app.route("/", methods=['GET', 'POST'])
-def index():
+@app.route("/<path:image_url>")
+def index(image_url=None):
     
-    if request.form:
-        
+    if not image_url and request.form:
         image_url = request.form['image_url']
+        
+    if image_url:
+        
         frames = _explode_image_url(image_url)
                                 
         return render_template('index.html', 
@@ -20,7 +23,6 @@ def index():
                                           
     else:
         return render_template('index.html')
-
 
 @app.route("/api")
 def api():

@@ -42,7 +42,8 @@ a {
     color: inherit;
 }
 
-#main_form {
+#main_form,
+#link_to_page {
     padding: 20px 0;
     width: 400px;
     margin: 0 auto;
@@ -54,7 +55,7 @@ a {
     padding: 10px 0;
 }
 
-input[type='url'] {
+input[type='url'], input[type='text'] {
     width: 300px;
 }
 
