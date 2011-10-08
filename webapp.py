@@ -28,6 +28,7 @@ def index(image_url=None):
 def api():
     return render_template('api.html')
     
+    
 @app.route("/api/explode", methods=['GET'])
 def api_explode():
     
@@ -36,8 +37,9 @@ def api_explode():
     
     return jsonify(frames=frames)
 
+
 def _explode_image_url(image_url):
-    
+
     try:
         exploder = GifExplode(image_url)
         frames = exploder.explode()
