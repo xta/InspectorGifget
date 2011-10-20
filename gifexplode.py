@@ -7,30 +7,31 @@ class GifExplode:
     def __init__(self, image_url):
         self._image_url = image_url
         self._image = None
+        self._frames = []
         
     def explode(self):
         """ Returns list of base64 encoded frames """
         
-        self.__fetch_image()
+        if not self._frames:
 
-        # Save frames of GIF as base64 encoded data
-        frames = []
-        im = Image.open(self._image)
+            self.__fetch_image()
+
+            im = Image.open(self._image)
+
+            try:
+                while True:
+
+                    base64_encoded_frame = self.__encode_frame(im)
+                    self._frames.append(base64_encoded_frame)
+
+                    # Go to next frame
+                    im.seek(im.tell()+1)
+
+            except EOFError:
+                # called at end of every gif frame *sequence*:
+                self._image.close()
         
-        try:
-            while True:
-
-                base64_encoded_frame = self.__encode_frame(im)
-                frames.append(base64_encoded_frame)
-
-                # Go to next frame
-                im.seek(im.tell()+1)
-
-        except EOFError:
-            # called at end of every gif frame *sequence*:
-            self._image.close()
-            
-        return frames
+        return self._frames
         
     def __fetch_image(self):
         """ Fetches the image from the web, saves to instance var"""

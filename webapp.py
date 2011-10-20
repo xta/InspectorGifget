@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, abort, jsonify
 
 from werkzeug.contrib.cache import MemcachedCache
 
-DEBUG=False
+DEBUG=True
 
 app = Flask(__name__)
 cache = MemcachedCache(['mc6.ec2.northscale.net:11211'])
