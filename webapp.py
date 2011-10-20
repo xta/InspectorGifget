@@ -46,16 +46,17 @@ def _explode_image_url(image_url):
     frames = cache.get(image_url)
     
     if frames is None:
-        print "Nothing found in cache for %s" % image_url
+        #print "Nothing found in cache for %s" % image_url
         try:
             exploder = GifExplode(image_url)
             frames = exploder.explode()
-            print "Setting cache for %s" % image_url
+            #print "Setting cache for %s" % image_url
             cache.set(image_url, frames, timeout=5*60)
         except ValueError:
             abort(500)
     else:
-        print "Using cache for %s" % image_url
+        pass
+        #print "Using cache for %s" % image_url
     
     return frames
 
