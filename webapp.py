@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, abort, jsonify
 
 from werkzeug.contrib.cache import SimpleCache
 
-DEBUG=True
+DEBUG=False
 
 app = Flask(__name__)
 cache = SimpleCache()
@@ -51,7 +51,7 @@ def _explode_image_url(image_url):
             exploder = GifExplode(image_url)
             frames = exploder.explode()
             print "Setting cache for %s" % image_url
-            cache.set(image_url, frames, timeout=60*60)
+            cache.set(image_url, frames, timeout=5*60)
         except ValueError:
             abort(500)
     else:
