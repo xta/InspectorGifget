@@ -40,6 +40,10 @@ def api_explode():
     
     return jsonify(frames=frames)
 
+@app.errorhandler(500)
+def general_error(e):
+    return render_template('500.html'), 500
+
 
 def _explode_image_url(image_url):
 
