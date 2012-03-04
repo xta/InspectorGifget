@@ -24,7 +24,7 @@ h1 {
     font-size: 66px;
     text-align: center;
     padding: 10px;
-    margin-top: 20px;
+    margin: 20px 0 0 0;
     font-family: 'Changa One', sans-serif;
 }
 
@@ -35,7 +35,15 @@ h1 a {
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
+}
+h3 {
+  margin: 0;
+  background: #9E2B20;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 a {
@@ -44,9 +52,30 @@ a {
 
 #main_form,
 #link_to_page {
-    padding: 20px 0;
+    padding: 0px 0;
     width: 400px;
     margin: 0 auto;
+}
+#main_form {
+  padding-top: 0px;
+}
+.options {
+  overflow: auto;
+  width: 800px;
+  margin-bottom: 20px;
+}
+.option {
+  width: 350px;
+  padding: 20px;
+  background: #222;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  float: left;
+  height: 200px;
+}
+.option.right {
+  float: right;
 }
 
 #demo {
@@ -56,7 +85,7 @@ a {
 }
 
 input[type='url'], input[type='text'] {
-    width: 300px;
+    width: 260px;
 }
 
 footer {
