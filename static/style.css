@@ -88,7 +88,7 @@ input[type='url'], input[type='text'] {
     width: 260px;
 }
 
-footer {
+footer, .top-ad {
     background: #9E2B20;
     padding: 10px;
     margin: 10px auto;
