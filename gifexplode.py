@@ -17,11 +17,17 @@ class GifExplode:
             self.__fetch_image()
 
             im = Image.open(self._image)
-
+            palette = None
             try:
                 while True:
+                    imframe = im.copy()
+                    if palette == None:
+                        palette = imframe.getpalette()
+                    else:
+                        imframe.putpalette(palette)
 
-                    base64_encoded_frame = self.__encode_frame(im)
+
+                    base64_encoded_frame = self.__encode_frame(imframe)
                     self._frames.append(base64_encoded_frame)
 
                     # Go to next frame
@@ -46,7 +52,7 @@ class GifExplode:
         
         # Save frame to file-like object
         memory_frame = StringIO.StringIO()
-        frame.save(memory_frame, format='GIF')
+        frame.save(memory_frame, format="PNG", **frame.info)
 
         # Encode
         base64_encoded_frame = b64encode(memory_frame.getvalue())
