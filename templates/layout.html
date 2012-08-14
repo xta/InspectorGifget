@@ -43,8 +43,18 @@
 		  })();
 
 		</script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	  	<script src="https://api.filepicker.io/v0/filepicker.js"></script>
+		<script type="text/javascript">
+			//Seting up Filepicker.io with your api key
+		  filepicker.setKey('Awf6I1k_STpC_ndTz5Xg3z');
+		  
+			$('#filepickerInput').change(function(e) {
+				window.location.href = "http://gif-explode.com/" + e.originalEvent.files[0].url;
+			});
+
+		</script>
 		
-        <script type="text/javascript">var switchTo5x=false;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'94d32865-7a2a-4df3-86eb-22c12a45aefa'});</script>
 
 		<script type="text/javascript">
 			window._idl = {};
@@ -58,24 +68,5 @@
 			})();
         </script>
 
-        <!-- Start of Woopra Code -->
-		<script type="text/javascript">
-		function woopraReady(tracker) {
-			tracker.setDomain('gif-explode.com');
-			tracker.setIdleTimeout(60000);
-			tracker.trackPageview({type:'pageview',url:window.location.pathname+window.location.search,title:document.title});
-			return false;
-		}
-		(function() {
-			var wsc = document.createElement('script');
-			wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
-			wsc.type = 'text/javascript';
-			wsc.async = true;
-			var ssc = document.getElementsByTagName('script')[0];
-			ssc.parentNode.insertBefore(wsc, ssc);
-		})();
-		</script>
-		<!-- End of Woopra Code -->
-		
 	</body>
 </html>

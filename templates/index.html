@@ -37,6 +37,15 @@
               {% endif %}/>
           <input type="submit" value="Fetch" />
         </form>
+        <p>
+          Or use a photo from Dropbox, Facebook, Github, GDrive, Flickr, or GMail:
+        </p>
+        <input type="filepicker" 
+               id="filepickerInput"
+               name="filepicker-input"
+               data-fp-option-services="DROPBOX,FACEBOOK,GITHUB,GOOGLE_DRIVE,FLICKR,GMAIL,URL"
+               value="Loading..."
+        />
       </div>
       <div class="option right">
         <h3>From your computer:</h3>
@@ -101,6 +110,9 @@
 			{% for frame in frames %}
 				<img src="data:image/gif;base64,{{ frame }}" />
 			{% endfor %}
-		</section>
+    </section>
+
+        <script type="text/javascript">var switchTo5x=false;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'94d32865-7a2a-4df3-86eb-22c12a45aefa'});</script>
+
   {% endif %}
 {% endblock %}
