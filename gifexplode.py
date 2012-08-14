@@ -1,7 +1,7 @@
 import urllib2
 import StringIO
 from base64 import b64encode
-from PIL import Image
+from PIL import Image, ImageSequence
 
 class GifExplode:
     def __init__(self, image_url):
@@ -17,26 +17,22 @@ class GifExplode:
             self.__fetch_image()
 
             im = Image.open(self._image)
-            palette = None
-            try:
-                while True:
-                    imframe = im.copy()
-                    if palette == None:
-                        palette = imframe.getpalette()
-                    else:
-                        imframe.putpalette(palette)
 
+            prevFrame = None
 
-                    base64_encoded_frame = self.__encode_frame(imframe)
-                    self._frames.append(base64_encoded_frame)
+            for i, frame in enumerate(ImageSequence.Iterator(im)):
 
-                    # Go to next frame
-                    im.seek(im.tell()+1)
+                mask = frame.convert('RGBA')
 
-            except EOFError:
-                # called at end of every gif frame *sequence*:
-                self._image.close()
-        
+                if prevFrame:
+                    prevFrame.paste(frame, None, mask = mask.split()[3])
+                else:
+                    # At first frame, set as prevFrame
+                    prevFrame = frame.copy()
+
+                base64_encoded_frame = self.__encode_frame(prevFrame)
+                self._frames.append(base64_encoded_frame)
+
         return self._frames
         
     def __fetch_image(self):

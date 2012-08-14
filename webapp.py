@@ -56,7 +56,8 @@ def _explode_image_url(image_url):
             frames = exploder.explode()
             print "Setting cache for %s" % image_url
             cache.set(image_url, frames, timeout=60*60)
-        except ValueError:
+        except ValueError, e:
+            print e
             abort(500)
     else:
         print "Using cache for %s" % image_url
