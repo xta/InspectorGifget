@@ -1,0 +1,131 @@
+@import url(http://fonts.googleapis.com/css?family=Changa+One);
+@import url(http://fonts.googleapis.com/css?family=Spinnaker);
+
+body {
+    background: #272F30;
+    color: #F7EDB7;
+    font-family: 'Spinnaker', sans-serif;
+    margin: 0;
+}
+
+#wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    background: #222;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 66px;
+    text-align: center;
+    padding: 10px;
+    margin: 20px 0 0 0;
+    font-family: 'Changa One', sans-serif;
+}
+
+h1 a {
+    color: #9E2B20;
+    text-decoration: none;
+    text-shadow: 2px 3px #F7EDB7;
+}
+
+h2 {
+  text-align: center;
+}
+h3 {
+  margin: 0;
+  background: #9E2B20;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+a {
+    color: inherit;
+}
+
+button {
+}
+
+#main_form,
+#link_to_page {
+    padding: 0px 0;
+    width: 400px;
+    margin: 0 auto;
+}
+#main_form {
+  padding-top: 0px;
+}
+.options {
+  overflow: auto;
+  width: 800px;
+  margin-bottom: 20px;
+}
+.option {
+  width: 350px;
+  padding: 20px;
+  background: #222;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  float: left;
+  height: 200px;
+}
+.option.right {
+  float: right;
+}
+
+#demo {
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+input[type='url'], input[type='text'] {
+    width: 260px;
+}
+
+footer, .top-ad {
+    background: #9E2B20;
+    padding: 10px;
+    margin: 10px auto;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#links {
+	font-size: 80%;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+#ad {
+	text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 122px;
+
+}
+#ad .inner {
+  width: 800px;
+  height: 90px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin: 0 auto;
+  background: #222;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+}
+#wrapper.frames {
+  padding-bottom:132px;
+}
