@@ -4,38 +4,53 @@ body, input, form {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-#wrapper {
-}
-
-header, footer {
-
-}
-
-#nav-elements {
-	margin: 20px;
-}
-
-#counter {
-	margin-left: 20px;
-}
-
-#currentCount {
-
-}
-
-#totalCount {
-
-}
-
-.frame {
-	width: 100%;
-	background: #000;
-	padding: 20px 0 20px 0;
+#tagline {
+	margin-top: -20px;
+	font-style: italic;
 }
 
 #input-url {
-
+	padding: 30px 0 0 30px;
 }
 
-#playback {
+#wrapper {
+	margin-left: auto;
+ 	margin-right: auto;
+ 	display: table;
 }
+
+header {}
+
+footer {
+	margin: 20px 0 30px 0;
+}
+
+#player {
+	padding: 30px;
+}
+
+#frame img{
+}
+
+.frameimg {
+	position: absolute;
+}
+
+#frameimg1 {
+	z-index: 50;
+}
+
+#frameimg2 {
+	z-index: 900;	
+}
+
+#counter {
+	margin-bottom: 20px;
+}
+#currentCount {}
+#totalCount {}
+
+#control {}
+
+#larr {}
+#rarr {}

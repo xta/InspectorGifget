@@ -1,17 +1,16 @@
 {% extends "layout.html" %}
 {% block body %}
 
-	<h2>Slow-mo playback, pause, or slideshow .gif(s)</h2>
-  
-	<div id="input-url">
-        <p>Enter .gif url (e.g. <a href="/http://i.imgur.com/sPLRc.gif">http://i.imgur.com/sPLRc.gif</a>):</p>
+	<div id="tagline">Slow-mo playback & manually navigate .gif(s)</div>
 
+	<div id="input-url">
+        
         <form id="main_form" action="/" method="post">
           <input type="url" 
               name="image_url" 
-              placeholder="url for .gif" 
+              placeholder="Enter .gif url here" 
               autofocus="autofocus" 
-              size="50"
+              size="30"
 
               {% if image_url %}
                 value="{{image_url}}"
@@ -23,24 +22,36 @@
 	
 	{% if frames %}
 	
-		<div id="playback">
-      <div id="nav-elements">
-        Play
-        &larr;
-        &rarr;
-        <span id="counter">
-          Frame <span id="currentCount"></span> / 
-          <span id="totalCount"></span>
-        </span>
+  <div id="player">
+
+        <div id="counter">
+          <span id="currentCount">1</span> / 
+          <span id="totalCount">
+            {% for frame in frames %}
+              {{loop.length if loop.first}}
+            {% endfor %}
+          </span> 
+        </div>
+
+      <div id="frame">
+        <div id="frameimg2" class="frameimg"></div>
+        <div id="frameimg1" class="frameimg"></div>
       </div>
 
-			{% for frame in frames %}
-        <div class="frame">
-				  <img src="data:image/gif;base64,{{ frame }}" />
-        </div>
-			{% endfor %}
+      <script>
+        var photos = [ 
+  			{% for frame in frames %}
 
-    </div>
+            {
+              "counter" : "{{loop.index }}",
+              "image" : "{{ frame }}"
+            }{{ ',' if not loop.last }}
+
+        {% endfor %}
+        ];
+      </script>
+
+  </div>
 
   {% endif %}
 
