@@ -5,27 +5,29 @@ $(document).ready(function() {
   var j = 0;
   var speed = 1000;
 
-(function(){
-    $('#frameimg1').prepend('<img src="data:image/gif;base64,' + photos[0].image +  '" />');
-}());
-  
-(function(){
-      setInterval(function(){
-          i++;
-          if (i == count) { i = 0; }  
+// load first img frame
+  (function(){
+      $('#frameimg1').prepend('<img src="data:image/gif;base64,' + photos[0].image +  '" />');
+  }());
 
-          j = i - 1;
-          if (j == -1) { j = count; }
+// loop through img(s)  
+  (function(){
+        setInterval(function(){
+            i++;
+            if (i == count) { i = 0; }  
 
-          $('#frameimg2').children().eq(0).remove();	
-          $('#frameimg2').prepend('<img src="data:image/gif;base64,' + photos[i].image +  '" />');
-          $('#currentCount').html(i+1);
+            j = i - 1;
+            if (j == -1) { j = count; }
 
-          $('#frameimg1').children().eq(0).remove();
-          $('#frameimg1').prepend('<img src="data:image/gif;base64,' + photos[j].image +  '" />');
-          
-			},speed);
-  })($(this));
+            $('#frameimg2').children().eq(0).remove();	
+            $('#frameimg2').prepend('<img src="data:image/gif;base64,' + photos[i].image +  '" />');
+            $('#currentCount').html(i+1);
+
+            $('#frameimg1').children().eq(0).remove();
+            $('#frameimg1').prepend('<img src="data:image/gif;base64,' + photos[j].image +  '" />');
+            
+  			},speed);
+    })($(this));
 
   
 

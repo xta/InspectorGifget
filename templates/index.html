@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
 
-	<div id="tagline">Slow-mo playback & manually navigate .gif(s)</div>
+  <div id="tagline">Slow-mo playback .gif(s)</div>
 
-	<div id="input-url">
+  <div id="input-url">
         
         <form id="main_form" action="/" method="post">
           <input type="url" 
@@ -19,9 +19,9 @@
           <input type="submit" value="Inspect" />
         </form>
   </div>
-	
-	{% if frames %}
-	
+  
+  {% if frames %}
+  
   <div id="player">
 
         <div id="counter">
@@ -40,7 +40,7 @@
 
       <script>
         var photos = [ 
-  			{% for frame in frames %}
+        {% for frame in frames %}
 
             {
               "counter" : "{{loop.index }}",
