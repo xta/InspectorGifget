@@ -8,6 +8,7 @@ class GifExplode:
         self._image_url = image_url
         self._image = None
         self._frames = []
+        self._timings = []
         
     def explode(self):
         """ Returns list of base64 encoded frames """
@@ -17,6 +18,8 @@ class GifExplode:
             self.__fetch_image()
 
             im = Image.open(self._image)
+
+            self._timings.append(im.info['duration'])
 
             prevFrame = None
 
@@ -33,7 +36,10 @@ class GifExplode:
                 base64_encoded_frame = self.__encode_frame(prevFrame)
                 self._frames.append(base64_encoded_frame)
 
-        return self._frames
+        return {'frames':self._frames,'timings':self._timings}
+
+
+
         
     def __fetch_image(self):
         """ Fetches the image from the web, saves to instance var"""

@@ -1,17 +1,13 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Gif Explode - Online Gif Frame Viewer - Extract Frames from an Animated GIF Image</title>
+		<title>Inspector Gifget - frame by frame .gif viewer</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
-    <link rel="shortcut icon" href="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw%3D%3D" />
 	</head>
 	<body>
     <div id="wrapper" class="{% if frames %}frames{% endif %}">
-			<div class="top-ad">
-				<a href="http://www.dpbolvw.net/click-5684143-10650221" target="_top">Funny T-Shirts Only $6</a> You will never find another deal like this. Any 10 for only $50!<img src="http://www.ftjcfx.com/image-5684143-10650221" width="1" height="1" border="0"/>
-			</div>
 			<header>
-				<h1><a href="/">Gif Explode</a></h1>
+				<h1><a href="/">Inspector Gifget</a></h1>
 			</header>
 			
 			{% block body %}{% endblock %}
@@ -19,58 +15,12 @@
 			<footer>
 				Written in <a href="http://flask.pocoo.org/">Flask</a>.  
 				Hosted on <a href="http://heroku.com">Heroku</a>.  
-				View the source on <a href="https://github.com/trg/GIF-Explode">Github</a>.
+				Forked on <a href="https://github.com/trg/GIF-Explode">Github</a>.
+				Thanks to <a href="http://gif-explode.com/">Gif Explode</a>.
+				<!--View the source on <a href="https://github.com/trg/GIF-Explode">Github</a>.-->
 			</footer>
-			
-			<div id="links">
-				Need more image tools?  Check out <a href="http://imgops.com/">ImgOps</a>.<br />
-				Content prohibited by Heroku's <a href="http://policy.heroku.com/aup">Acceptable Use Policy</a> or applicable law is forbidden.<br />
-				<a href="http://internetdefenseleague.org"><img style="width:150px;height:150px" src="http://internetdefenseleague.org/images/badges/final/shield_badge.png" alt="Member of The Internet Defense League" /></a>
-      </div>
-
-			<div class="top-ad">
-        <a href="http://www.kqzyfj.com/click-5684143-10650219" target="_top">All Printed Tees $6</a> Yes, we are for real. Now get 10 Tees for only $50!<img src="http://www.tqlkg.com/image-5684143-10650219" width="1" height="1" border="0"/>
-      </div>
-			
 		</div>
-		
-		<script type="text/javascript">
-
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-26142178-1']);
-		  _gaq.push(['_trackPageview']);
-
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-
-		</script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	  	<script src="https://api.filepicker.io/v0/filepicker.js"></script>
-		<script type="text/javascript">
-			//Seting up Filepicker.io with your api key
-		  filepicker.setKey('Awf6I1k_STpC_ndTz5Xg3z');
-		  
-			$('#filepickerInput').change(function(e) {
-				window.location.href = "http://gif-explode.com/" + e.originalEvent.files[0].url;
-			});
-
-		</script>
-		
-
-		<script type="text/javascript">
-			window._idl = {};
-			_idl.variant = "banner";
-			(function() {
-				var idl = document.createElement('script');
-				idl.type = 'text/javascript';
-				idl.async = true;
-				idl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'members.internetdefenseleague.org/include/?url=' + (_idl.url || '') + '&campaign=' + (_idl.campaign || '') + '&variant=' + (_idl.variant || 'banner');
-				document.getElementsByTagName('body')[0].appendChild(idl);
-			})();
-        </script>
-
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		<script src="{{ url_for('static', filename='custom.js') }}"></script>
 	</body>
 </html>

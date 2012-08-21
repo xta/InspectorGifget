@@ -11,34 +11,20 @@ cache = SimpleCache()
 
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/<path:image_url>")
+
 def index(image_url=None):
-    
+
     if not image_url and request.form:
         image_url = request.form['image_url']
         
     if image_url:
-        
         frames = _explode_image_url(image_url)
-                                
         return render_template('index.html', 
                                frames=frames,
-                               image_url=image_url)
-                                          
+                               image_url=image_url,
+                               timings=42)
     else:
         return render_template('index.html')
-
-@app.route("/api")
-def api():
-    return render_template('api.html')
-    
-    
-@app.route("/api/explode", methods=['GET'])
-def api_explode():
-    
-    image_url = request.args['image_url']
-    frames = _explode_image_url(image_url)
-    
-    return jsonify(frames=frames)
 
 @app.errorhandler(500)
 def general_error(e):
@@ -46,11 +32,10 @@ def general_error(e):
 
 
 def _explode_image_url(image_url):
-
-    frames = cache.get(image_url)
-    
-    if frames is None:
-        print "Nothing found in cache for %s" % image_url
+    #frames = cache.get(image_url)
+    #if frames is None: <-- bypass cache
+    if 1 == 1:
+        #print "Nothing found in cache for %s" % image_url
         try:
             exploder = GifExplode(image_url)
             frames = exploder.explode()

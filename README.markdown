@@ -1,1 +1,1 @@
-# Source for [GIF Explode](http://gif-explode.com)
+# Forked from [GIF Explode](http://gif-explode.com)

@@ -1,100 +1,47 @@
 {% extends "layout.html" %}
 {% block body %}
 
-	<h2>Extract single frame images from animated gif image files!</h2>
-	
-	<section>
-		
-    <div class="options">
-      <div class="option">
-        <h3>From the web:</h3>
+	<h2>Slow-mo playback, pause, or slideshow .gif(s)</h2>
+  
+	<div id="input-url">
+        <p>Enter .gif url (e.g. <a href="/http://i.imgur.com/sPLRc.gif">http://i.imgur.com/sPLRc.gif</a>):</p>
+
         <form id="main_form" action="/" method="post">
-          <p>Paste the URL of the image here:</p> 
-          <input  type="url" 
+          <input type="url" 
               name="image_url" 
-              placeholder="Image URL" 
+              placeholder="url for .gif" 
               autofocus="autofocus" 
+              size="50"
+
               {% if image_url %}
                 value="{{image_url}}"
               {% endif %}/>
-          <input type="submit" value="Fetch" />
-        </form>
-        <p>
-          Or use a graphic from Dropbox, Facebook, Github, GDrive, Flickr, or GMail:
-        </p>
-        <input type="filepicker" 
-               id="filepickerInput"
-               name="filepicker-input"
-               data-fp-option-services="DROPBOX,FACEBOOK,GITHUB,GOOGLE_DRIVE,FLICKR,GMAIL,URL"
-               value="Loading..."
-        />
-      </div>
-      <div class="option right">
-        <h3>From your computer:</h3>
-        <p>
-          1. Upload your image to <a href="http://imgur.com">Imgur</a>.
-        <p>
-        <p>
-          2. Copy &amp; Paste your Imgur image URL in "From the web" form to the left
-          of this box.
-        </p>
-        <p>
-          Note: Your Imgur URL will look something like this: http://i.imgur.com/aXNfp.gif
-        </p>
-      </div>
-    </div>
-    
-    {% if not frames %}
-      <div class="options">
-        <div class="option">
-          <h3>Confused?</h3>
-          <p>
-            See it in action:
-          </p>
-          <p>
-            <a href="/http://i.imgur.com/aXNfp.gif">Click here to view the demo!</a>
-          </p>
-        </div>
-        <div class="option right">
-          <h3>The Bookmarklet</h3>
-          <p>
-            Drag this link to your browser's bookmark bar.
-            Use when you're viewing a gif directly. (eg: Your address bar says 'http://example.com/someImage.gif')
-          </p>
-          <p>
-            <a href="javascript:(function%20(){window.location.href='http://gif-explode.com/'+window.location.href;}());">GIF-Explode</a>
-          </p>
-          </p>
-        </div>
-      </div>
-    {% endif %}
 
-	</section>
+          <input type="submit" value="Inspect" />
+        </form>
+  </div>
 	
 	{% if frames %}
 	
-		{% if image_url %}
-			<aside id="link_to_page">
-				Link to this page:<br />
-				<input type="text" value="http://gif-explode.com/{{ image_url }}" />
-				<br /><br />
-				<span  class='st_tumblr' ></span><span  class='st_reddit' ></span><span  class='st_twitter' ></span><span  class='st_facebook' ></span><span  class='st_email' ></span><span  class='st_sharethis' ></span>
-			</aside>
-		{% endif %}
-	
-		<section>
-			{% if image_url %}
-				Original image:<br />
-				<img src="{{ image_url }}" /> <br />
-			{% endif %}
-			<br />
-			Image frames:<br />
-			{% for frame in frames %}
-				<img src="data:image/gif;base64,{{ frame }}" />
-			{% endfor %}
-    </section>
+		<div id="playback">
+      <div id="nav-elements">
+        Play
+        &larr;
+        &rarr;
+        <span id="counter">
+          Frame <span id="currentCount"></span> / 
+          <span id="totalCount"></span>
+        </span>
+      </div>
 
-        <script type="text/javascript">var switchTo5x=false;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'94d32865-7a2a-4df3-86eb-22c12a45aefa'});</script>
+			{% for frame in frames %}
+        <div class="frame">
+				  <img src="data:image/gif;base64,{{ frame }}" />
+        </div>
+			{% endfor %}
+
+    </div>
 
   {% endif %}
+
 {% endblock %}
