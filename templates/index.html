@@ -1,14 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
 
-  <div id="tagline">Slow-mo playback .gif(s)</div>
-
   <div id="input-url">
         
         <form id="main_form" action="/" method="post">
           <input type="url" 
               name="image_url" 
-              placeholder="Enter .gif url here" 
+              placeholder="http:// enter URL .gif" 
               autofocus="autofocus" 
               size="30"
 
@@ -16,26 +14,33 @@
                 value="{{image_url}}"
               {% endif %}/>
 
-          <input type="submit" value="Inspect" />
+          <input class="button" type="submit" value="Inspect" />
         </form>
   </div>
   
+  {% if not frames %}
+    <p><a href="/http://i.imgur.com/4RhWb.gif">View an example</a>.</p>
+  {% endif %}
+
+
   {% if frames %}
   
   <div id="player">
 
-        <div id="counter">
-          <span id="currentCount">1</span> / 
-          <span id="totalCount">
-            {% for frame in frames %}
-              {{loop.length if loop.first}}
-            {% endfor %}
-          </span> 
-        </div>
+      <div id="slider"></div>
 
       <div id="frame">
         <div id="frameimg2" class="frameimg"></div>
         <div id="frameimg1" class="frameimg">Loading ...</div>
+      </div>
+
+      <div id="counter">
+        <span id="currentCount">1</span> / 
+        <span id="totalCount">
+          {% for frame in frames %}
+            {{loop.length if loop.first}}
+          {% endfor %}
+        </span> 
       </div>
 
       <script>
