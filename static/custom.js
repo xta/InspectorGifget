@@ -7,6 +7,7 @@ $(document).ready(function() {
 
 // load first img frame
   (function(){
+      $('#frameimg1').children().eq(0).remove();
       $('#frameimg1').prepend('<img src="data:image/gif;base64,' + photos[0].image +  '" />');
   }());
 
